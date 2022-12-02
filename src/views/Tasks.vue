@@ -64,7 +64,9 @@ export default {
     
     async function getApi(){
             loading.value= true
-            await store.dispatch('task/getTasks')
+            //در اینجا برای اینکه باز دیتا هارو موقع رندر نگیره باید فانکشن رو بجای اینکه از اکشن صدا بزنیم از گتر اون رو صدا بزنیم
+            await store.getters['task/getApi']
+
             loading.value=false
           }
     getApi()
