@@ -8,6 +8,20 @@ const task = {
       },
     
       getters: {
+        async getApi(state){
+          try{
+            let response = await axios.get("https://jsonplaceholder.typicode.com/todos")
+            state.tasks = response.data
+          }
+          catch(error){
+            Swal.fire({
+              title: 'Error',
+              text: 'There is a problem,please try again!',
+              icon: 'error',
+              confirmButtonText:'OK'
+            })
+          }
+        }
       },
     
       mutations: {
@@ -34,20 +48,20 @@ const task = {
       },
     
       actions: {
-       async getTasks(context){
-                try{
-                  let response =await axios.get("https://jsonplaceholder.typicode.com/todos");
-                  context.commit('setTasks',response.data) 
-                }   
-                catch(error){
-                  Swal.fire({
-                    title: 'Error',
-                    text: 'There is a problem,please try again!',
-                    icon: 'error',
-                    confirmButtonText:'OK'
-                  })
-                }
-              }
+      //  async getTasks(context){
+      //           try{
+      //             let response =await axios.get("https://jsonplaceholder.typicode.com/todos");
+      //             context.commit('setTasks',response.data) 
+      //           }   
+      //           catch(error){
+      //             Swal.fire({
+      //               title: 'Error',
+      //               text: 'There is a problem,please try again!',
+      //               icon: 'error',
+      //               confirmButtonText:'OK'
+      //             })
+      //           }
+      //         }
       }
 }
 
